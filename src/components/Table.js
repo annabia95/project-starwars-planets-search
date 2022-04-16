@@ -3,10 +3,12 @@ import StarwarsContext from '../context/StarwarsContext';
 
 function Table() {
   const {
-    /*  data, */
+    data,
     searchInput,
     setSearchInput,
-    filteredPlanets } = useContext(StarwarsContext);
+    filteredPlanets,
+    isLoading } = useContext(StarwarsContext);
+  console.log(Object.keys(data));
   return (
     <>
       <h1>StarWars</h1>
@@ -16,44 +18,39 @@ function Table() {
         value={ searchInput }
         onChange={ (e) => setSearchInput(e.target.value) }
       />
-      <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Rotation Period</th>
-            <th>Orbital Period</th>
-            <th>Diameter</th>
-            <th>Climate</th>
-            <th>Gravity</th>
-            <th>Terrain</th>
-            <th>Surface Water</th>
-            <th>Population</th>
-            <th>Films</th>
-            <th>Created</th>
-            <th>Edited</th>
-            <th>URL</th>
-          </tr>
-        </thead>
-        <tbody>
-          {filteredPlanets.map((planet, index) => (
-            <tr key={ index }>
-              <td>{planet.name}</td>
-              <td>{planet.rotation_period}</td>
-              <td>{planet.orbital_period}</td>
-              <td>{planet.diameter}</td>
-              <td>{planet.climate}</td>
-              <td>{planet.gravity}</td>
-              <td>{planet.terrain}</td>
-              <td>{planet.surface_water}</td>
-              <td>{planet.population}</td>
-              <td>{planet.films}</td>
-              <td>{planet.created}</td>
-              <td>{planet.edited}</td>
-              <td>{planet.url}</td>
+      {!isLoading && (
+        <table>
+          <thead>
+            <tr>
+              { Object.keys(data[0]).map((title) => (
+                <th key={ title }>
+                  {(title.charAt(0).toUpperCase() + title.slice(1)).replace('_', ' ')}
+                </th>
+              ))}
             </tr>
-          ))}
-        </tbody>
-      </table>
+            {/* Fiz um tratamento do retorno da string da API, usando como referência:https://stackoverflow.com/questions/1026069/how-do-i-make-the-first-letter-of-a-string-uppercase-in-javascript  */}
+          </thead>
+          <tbody>
+            {filteredPlanets.map((planet, index) => (
+              <tr key={ index }>
+                <td>{planet.name}</td>
+                <td>{planet.rotation_period}</td>
+                <td>{planet.orbital_period}</td>
+                <td>{planet.diameter}</td>
+                <td>{planet.climate}</td>
+                <td>{planet.gravity}</td>
+                <td>{planet.terrain}</td>
+                <td>{planet.surface_water}</td>
+                <td>{planet.population}</td>
+                <td>{planet.films}</td>
+                <td>{planet.created}</td>
+                <td>{planet.edited}</td>
+                <td>{planet.url}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
     </>
   );
 }

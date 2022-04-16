@@ -4,6 +4,7 @@ import StarwarsContext from './StarwarsContext';
 
 function StarwarsProvider({ children }) {
   const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [filteredPlanets, setFilteredPlanets] = useState([]);
   const [searchInput, setSearchInput] = useState('');
   const endpoint = 'https://swapi-trybe.herokuapp.com/api/planets/';
@@ -13,6 +14,7 @@ function StarwarsProvider({ children }) {
       const { results } = await fetch(endpoint).then((response) => response.json());
       results.forEach((planet) => delete planet.residents);
       setData(results);
+      setIsLoading(false);
     };
     requestData();
   }, []);
@@ -28,7 +30,7 @@ function StarwarsProvider({ children }) {
   return (
     <StarwarsContext.Provider
       value={
-        { data, setData, filteredPlanets, searchInput, setSearchInput }
+        { data, setData, filteredPlanets, searchInput, setSearchInput, isLoading }
       }
     >
       { children }
