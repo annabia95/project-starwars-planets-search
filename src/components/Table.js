@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import StarwarsContext from '../context/StarwarsContext';
+import Header from './Header';
 
 function Table() {
   const {
@@ -8,7 +9,6 @@ function Table() {
     setSearchInput,
     filteredPlanets,
     isLoading } = useContext(StarwarsContext);
-  console.log(Object.keys(data));
   return (
     <>
       <h1>StarWars</h1>
@@ -18,6 +18,7 @@ function Table() {
         value={ searchInput }
         onChange={ (e) => setSearchInput(e.target.value) }
       />
+      <Header />
       {!isLoading && (
         <table>
           <thead>

@@ -3,11 +3,15 @@ import PropTypes from 'prop-types';
 import StarwarsContext from './StarwarsContext';
 
 function StarwarsProvider({ children }) {
+  const endpoint = 'https://swapi-trybe.herokuapp.com/api/planets/';
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [filteredPlanets, setFilteredPlanets] = useState([]);
   const [searchInput, setSearchInput] = useState('');
-  const endpoint = 'https://swapi-trybe.herokuapp.com/api/planets/';
+  /* Requisito 3 */
+  const [columnFilter, setColumFilter] = useState('population');
+  const [comparisonFilter, setComparisonFilter] = useState('maior que');
+  const [valueFilter, setValueFilter] = useState(0);
 
   useEffect(() => {
     const requestData = async () => {
@@ -26,11 +30,28 @@ function StarwarsProvider({ children }) {
       .includes(searchInput.toLowerCase()));
     setFilteredPlanets(filtered);
   }, [data, searchInput]);
+  /*  const bttnFilter = () => {
+    const filteredColumn = Object.keys(data[0]).filter((column) => column
+      .includes(columnFilter));
+    setFilteredPlanets(filteredColumn);
+  }; */
 
   return (
     <StarwarsContext.Provider
       value={
-        { data, setData, filteredPlanets, searchInput, setSearchInput, isLoading }
+        { data,
+          setData,
+          filteredPlanets,
+          setFilteredPlanets,
+          searchInput,
+          setSearchInput,
+          isLoading,
+          columnFilter,
+          setColumFilter,
+          comparisonFilter,
+          setComparisonFilter,
+          valueFilter,
+          setValueFilter }
       }
     >
       { children }
