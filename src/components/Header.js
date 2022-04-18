@@ -3,7 +3,6 @@ import StarwarsContext from '../context/StarwarsContext';
 
 function Header() {
   const {
-    data,
     isLoading,
     columnFilter,
     setColumFilter,
@@ -11,24 +10,25 @@ function Header() {
     setComparisonFilter,
     valueFilter,
     setValueFilter,
-    setFilteredPlanets } = useContext(StarwarsContext);
+    setFilteredPlanets,
+    filteredPlanets } = useContext(StarwarsContext);
 
   const bttnFilter = () => {
     const filteredColumn = columnFilter;
     const filteredComparison = comparisonFilter;
     const filteredValue = Number(valueFilter);
     if (filteredComparison === 'maior que') {
-      const arrComparisonBig = data
+      const arrComparisonBig = filteredPlanets
         .filter((elem) => (Number(elem[filteredColumn]) > filteredValue));
       setFilteredPlanets(arrComparisonBig);
     }
     if (filteredComparison === 'menor que') {
-      const arrComparisonSmall = data
+      const arrComparisonSmall = filteredPlanets
         .filter((elem) => (Number(elem[filteredColumn]) < filteredValue));
       setFilteredPlanets(arrComparisonSmall);
     }
     if (filteredComparison === 'igual a') {
-      const arrComparisonEqual = data
+      const arrComparisonEqual = filteredPlanets
         .filter((elem) => (Number(elem[filteredColumn]) === filteredValue));
       setFilteredPlanets(arrComparisonEqual);
     }
