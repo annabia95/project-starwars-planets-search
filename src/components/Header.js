@@ -1,7 +1,14 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import StarwarsContext from '../context/StarwarsContext';
 
 function Header() {
+  const filterColumns = [
+    'population',
+    'orbital_period',
+    'diameter',
+    'rotation_period',
+    'surface_water',
+  ];
   const {
     isLoading,
     columnFilter,
@@ -12,6 +19,12 @@ function Header() {
     setValueFilter,
     setFilteredPlanets,
     filteredPlanets } = useContext(StarwarsContext);
+  const [col, setCol] = useState(filterColumns);
+
+  const removeColumns = (column) => {
+    const newColumns = filterColumns.filter((coluna) => coluna !== column);
+    setCol(newColumns);
+  };
 
   const bttnFilter = () => {
     const filteredColumn = columnFilter;
@@ -32,6 +45,7 @@ function Header() {
         .filter((elem) => (Number(elem[filteredColumn]) === filteredValue));
       setFilteredPlanets(arrComparisonEqual);
     }
+    removeColumns(filteredColumn);
   };
 
   return (
@@ -43,7 +57,7 @@ function Header() {
             value={ columnFilter }
             onChange={ (e) => setColumFilter(e.target.value) }
           >
-            <option value="population">
+            {/*             <option value="population">
               population
             </option>
             <option value="orbital_period">
@@ -57,7 +71,15 @@ function Header() {
             </option>
             <option value="surface_water">
               surface_water
-            </option>
+            </option> */}
+            {col.map((option) => (
+              <option
+                key={ option }
+                value={ option }
+              >
+                { option }
+              </option>
+            ))}
           </select>
           <select
             data-testid="comparison-filter"
