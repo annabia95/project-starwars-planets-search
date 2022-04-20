@@ -30,11 +30,6 @@ function StarwarsProvider({ children }) {
       .includes(searchInput.toLowerCase()));
     setFilteredPlanets(filtered);
   }, [data, searchInput]);
-  /*  const bttnFilter = () => {
-    const filteredColumn = Object.keys(data[0]).filter((column) => column
-      .includes(columnFilter));
-    setFilteredPlanets(filteredColumn);
-  }; */
 
   return (
     <StarwarsContext.Provider

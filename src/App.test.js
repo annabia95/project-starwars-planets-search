@@ -434,7 +434,7 @@ describe('6 - Apague um filtro de valor numérico ao clicar no ícone de X de um
     expect(await screen.findAllByRole(ROW_ROLE_SELECTOR)).toHaveLength(ROWS_TOTAL);
   });
 
-  it('Adicione três filtros e clique no botão Remover Filtragens, todos os filtros deverão ser removidos', async () => {
+  it.only('Adicione três filtros e clique no botão Remover Filtragens, todos os filtros deverão ser removidos', async () => {
     await act(async () => {
       render(<App />);
     });

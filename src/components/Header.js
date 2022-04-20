@@ -10,6 +10,7 @@ function Header() {
     'surface_water',
   ];
   const {
+    data,
     isLoading,
     columnFilter,
     setColumFilter,
@@ -20,10 +21,13 @@ function Header() {
     setFilteredPlanets,
     filteredPlanets } = useContext(StarwarsContext);
   const [col, setCol] = useState(filterColumns);
-
-  const removeColumns = (column) => {
-    const newColumns = filterColumns.filter((coluna) => coluna !== column);
-    setCol(newColumns);
+  const [filterByNumericValues, setFilters] = useState([]);
+  const removeColumns = () => {
+    console.log(filterByNumericValues);
+    const c = filterColumns.filter((elem) => !filterByNumericValues
+      .find((f) => f.column === elem));
+    console.log(c);
+    setCol(c);
   };
 
   const bttnFilter = () => {
@@ -45,7 +49,22 @@ function Header() {
         .filter((elem) => (Number(elem[filteredColumn]) === filteredValue));
       setFilteredPlanets(arrComparisonEqual);
     }
-    removeColumns(filteredColumn);
+    setFilters([
+      ...filterByNumericValues,
+      {
+        column: filteredColumn,
+        comparisonFilter: filteredComparison,
+        value: filteredValue,
+      }]);
+    removeColumns();
+  };
+
+  const removeFilters = () => {
+    setFilteredPlanets(data);
+    setColumFilter('population');
+    setComparisonFilter('maior que');
+    setValueFilter('0');
+    setCol(filterColumns);
   };
 
   return (
@@ -55,23 +74,14 @@ function Header() {
           <select
             data-testid="column-filter"
             value={ columnFilter }
-            onChange={ (e) => setColumFilter(e.target.value) }
+            onChange={ (e) => {
+              setColumFilter(e.target.value); setFilters([
+                ...filterByNumericValues,
+                {
+                  column: e.target.value,
+                }]);
+            } }
           >
-            {/*             <option value="population">
-              population
-            </option>
-            <option value="orbital_period">
-              orbital_period
-            </option>
-            <option value="diameter">
-              diameter
-            </option>
-            <option value="rotation_period">
-              rotation_period
-            </option>
-            <option value="surface_water">
-              surface_water
-            </option> */}
             {col.map((option) => (
               <option
                 key={ option }
@@ -84,7 +94,13 @@ function Header() {
           <select
             data-testid="comparison-filter"
             value={ comparisonFilter }
-            onChange={ (e) => setComparisonFilter(e.target.value) }
+            onChange={ (e) => {
+              setComparisonFilter(e.target.value); setFilters([
+                ...filterByNumericValues,
+                {
+                  comparison: e.target.value,
+                }]);
+            } }
           >
             <option value="maior que">
               maior que
@@ -100,7 +116,13 @@ function Header() {
             type="number"
             data-testid="value-filter"
             value={ valueFilter }
-            onChange={ (e) => setValueFilter(e.target.value) }
+            onChange={ (e) => {
+              setValueFilter(e.target.value); setFilters([
+                ...filterByNumericValues,
+                {
+                  column: e.target.value,
+                }]);
+            } }
           />
           <button
             type="button"
@@ -109,6 +131,13 @@ function Header() {
           >
             Filtrar
 
+          </button>
+          <button
+            type="button"
+            data-testid="button-remove-filters"
+            onClick={ removeFilters }
+          >
+            Remover filtros
           </button>
         </div>
       )}
