@@ -1,0 +1,44 @@
+.table {
+  overflow-x: auto;
+}
+
+.styled--table {
+  border-collapse: collapse;
+  box-shadow: 0 0 1em gold;
+  cursor: pointer;
+  font-family: Arial , Helvetica , sans-serif;
+  font-size: 0.8em;
+  margin-bottom: 10%;
+  margin-left: 1%;
+  margin-right: 1%;
+  margin-top: 10%;
+  min-width: 400px;
+  text-align: center;
+}
+
+.styled--table thead tr {
+  background-color: black;
+  color: var(--accenty-color);
+}
+
+.styled--table th {
+  padding: 5px;
+}
+
+.styled--table tbody tr {
+  border-bottom: 1px solid #dddddd;
+  color: white;
+  transition: 0.5s;
+}
+
+.styled--table tbody tr:nth-of-type(even) {
+  background-color: black;
+  color: white;
+}
+
+
+.styled--table tbody tr:hover {
+  border-color: var(--bege);
+  color: var(--accenty-color);
+  outline: none;
+}

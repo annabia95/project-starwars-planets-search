@@ -12,6 +12,7 @@ function StarwarsProvider({ children }) {
   const [columnFilter, setColumFilter] = useState('population');
   const [comparisonFilter, setComparisonFilter] = useState('maior que');
   const [valueFilter, setValueFilter] = useState(0);
+  const [filterByNumericValues, setFilters] = useState([]);
 
   useEffect(() => {
     const requestData = async () => {
@@ -46,7 +47,9 @@ function StarwarsProvider({ children }) {
           comparisonFilter,
           setComparisonFilter,
           valueFilter,
-          setValueFilter }
+          setValueFilter,
+          filterByNumericValues,
+          setFilters }
       }
     >
       { children }
