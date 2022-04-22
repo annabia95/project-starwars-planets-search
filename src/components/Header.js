@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { FaFacebook } from 'react-icons/fa';
-import { AiFillInstagram, AiFillYoutube } from 'react-icons/ai';
+import { AiFillInstagram, AiFillYoutube, AiFillDelete } from 'react-icons/ai';
 import StarwarsContext from '../context/StarwarsContext';
 import './HeaderStyle.css';
 
@@ -146,6 +146,7 @@ function Header() {
               type="button"
               data-testid="button-filter"
               onClick={ bttnFilter }
+              className="bttn--filters"
             >
               Filtrar
 
@@ -154,19 +155,20 @@ function Header() {
               type="button"
               data-testid="button-remove-filters"
               onClick={ removeFilters }
+              className="remove--filters"
             >
               Remover filtros
             </button>
           </div>
-          <div className="used-filters">
-            <p>Filtros já utilizados</p>
+          <div className="used--filters">
             { filterByNumericValues.map(({ column, comparison, value }, index) => (
-              <div key={ index }>
-                <span data-testid="filter" className="single-filter">
+              <div key={ index } className="filter--name">
+                <button type="button" data-testid="filter" className="single--filter">
                   {`${column} ${comparison} ${value}`}
-                  <button type="button">X</button>
-                </span>
-
+                  <button type="button" className="bttn--filter">
+                    <AiFillDelete size={ 15 } color="#c53827" />
+                  </button>
+                </button>
               </div>
             ))}
           </div>

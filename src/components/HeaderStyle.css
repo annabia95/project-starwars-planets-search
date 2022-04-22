@@ -31,6 +31,31 @@
   padding: 20px;
 }
 
-p {
-  color: white;
+.used--filters {
+  display: flex;
+  justify-content: space-evenly;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 2%;
+  width: 100vh;
+}
+
+
+.single--filter {
+  align-items: center;
+  color: var(--accenty-color);
+  display: flex;
+  font-size: 10px;
+  margin-right: 20px;
+  padding: 6px 10px;
+  text-transform: lowercase;
+}
+
+
+.bttn--filter {
+  margin-left: 8px;
+}
+
+.remove--filters, .bttn--filters {
+  color: var(--secondary-color);
 }

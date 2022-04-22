@@ -44,6 +44,15 @@ function Table() {
               ))}
             </tbody>
           </table>
+          <div className="footer--container">
+            <footer>
+              Feito com ❤️ por Anna Beatriz Garcia
+              <br />
+              Direitos de imagem para StarWars
+              <br />
+              Dados fornecidos pela Trybe.
+            </footer>
+          </div>
         </div>
       )}
     </>
