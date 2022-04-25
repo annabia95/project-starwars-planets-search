@@ -29,11 +29,6 @@ function Header() {
     setFilters } = useContext(StarwarsContext);
 
   const [col, setCol] = useState(filterColumns);
-  /*   const removeColumns = () => {
-    const c = filterColumns.filter((elem) => !filterByNumericValues
-      .find((f) => f.column === elem));
-    setCol(c);
-  }; */
 
   useEffect(() => {
     const c = filterColumns.filter((elem) => !filterByNumericValues
@@ -111,14 +106,7 @@ function Header() {
               <select
                 data-testid="column-filter"
                 value={ columnFilter }
-                onChange={ (e) => {
-                  setColumFilter(e.target.value);
-                  /* ; setFilters([
-                ...filterByNumericValues,
-                {
-                  column: e.target.value,
-                }]); */
-                } }
+                onChange={ (e) => setColumFilter(e.target.value) }
               >
                 {col.map((option) => (
                   <option
