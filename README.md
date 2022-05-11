@@ -23,6 +23,12 @@ Search Page             |
 :-------------------------:|
 ![Screeshot](img/screen_1.png)  |
 
+
+ ## Link para o deploy:
+ 
+ [Starwars Planets Search](https://project-starwars-planets-search-green.vercel.app/)<br>
+ 
+ 
 ## Habilidades Desenvolvidas
 
 Neste projeto, desenvolvi as seguintes habilidades:
@@ -50,8 +56,5 @@ Neste projeto, desenvolvi as seguintes habilidades:
  - Não utilize filtros repetidos;
  - Apague o filtro de valores numéricos e desfaça as filtragens dos dados da tabela ao clicar no ícone de X de um dos filtros.
 
- ## Link para o deploy:
- 
- [Starwars Planets Search](https://project-starwars-planets-search-green.vercel.app/)<br>
  
 
